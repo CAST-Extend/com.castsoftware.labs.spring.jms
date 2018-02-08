@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
+            http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+            http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+            http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+ 	
+ 	<!-- ActiveMQ Connection Factory -->
+ 	<amq:connectionFactory id="amqConnectionFactory" brokerURL="${mdp.jms.url}" userName="${mdp.jms.username}"
+                            password="${mdp.jms.password}" />
+    <!-- Spring cached Connection Factory -->
+    <bean class="org.springframework.jms.connection.CachingConnectionFactory" id="connectionFactory">
+        <constructor-arg ref="amqConnectionFactory"/>
+        <property name="sessionCacheSize" value="100"/>
+    </bean>
+    <!-- in bound Queue -->
+    <bean id="myAppInboundQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="${myApp.jms.inbound.queue.name}" />
+    </bean>
+    <!-- JMS Template -->
+    <bean class="org.springframework.jms.core.JmsTemplate" id="jmsTemplate">
+    	<constructor-arg ref="amqConnectionFactory"/>
+    	<property name="defaultDestination"><ref bean="myAppInboundQueue"/></property>
+    	<property name="sessionTransacted" value="false" />
+        <property name="sessionAcknowledgeModeName" value="AUTO_ACKNOWLEDGE" />
+    </bean>
+    <!-- JMS Listener Contatiner -->
+    <jms:listener-container concurrency="1" connection-factory="connectionFactory" acknowledge="transacted" container-type="default" transaction-manager="transactionManager" cache="auto" >
+        <jms:listener destination="${mdp.jms.inbound.queue.name}" ref="queueListener" method="onMessage" />
+    </jms:listener-container> 
+    
+</beans>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<metaModel  file_level="client" file_no="36">
+    
+    <type name="SpringJmsListener" rid="50">
+      <description>Spring JMS Listener</description>
+	  <inheritedCategory name="CAST_PluginObject"/>
+      <inheritedCategory name="Java" />
+      <inheritedCategory name="JmsListenerProperties"/>
+     </type> 
+     <type name="SpringJmsListeners" rid="51">
+      <description>Spring JMS Listeners</description>
+	  <inheritedCategory name="CAST_PluginObject"/>
+      <inheritedCategory name="Java" />
+      <inheritedCategory name="JmsListenerProperties"/>
+     </type> 
+     
+      <category name="JmsListenerProperties" rid="53">
+        <description>Custom properties for spring JMS Listener</description>
+        <property name="destination" type="string" rid="51">
+            <description>spring jms Destination </description>
+            <attribute name="INF_TYPE" intValue="2045000"/>
+            <attribute name="INF_SUB_TYPE" intValue="1"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+      <property name="selector" type="string" rid="54">
+            <description>spring jms selector</description>
+            <attribute name="INF_TYPE" intValue="2045001"/>
+            <attribute name="INF_SUB_TYPE" intValue="1"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+      <property name="subscription" type="string" rid="55">
+            <description>spring jms subscription</description>
+            <attribute name="INF_TYPE" intValue="2045002"/>
+            <attribute name="INF_SUB_TYPE" intValue="1"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+       <property name="containerFactory" type="string" rid="56">
+            <description>spring jms containerFactory</description>
+            <attribute name="INF_TYPE" intValue="2045003"/>
+            <attribute name="INF_SUB_TYPE" intValue="1"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+       <property name="concurrency" type="string" rid="57">
+            <description>spring jms concurrency</description>
+            <attribute name="INF_TYPE" intValue="2045004"/>
+            <attribute name="INF_SUB_TYPE" intValue="1"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+      <property name="id" type="string" rid="58">
+            <description>JMS ID</description>
+            <attribute name="INF_TYPE" intValue="2045005"/>
+            <attribute name="INF_SUB_TYPE" intValue="2"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+      <property name="sourcetype" type="string" rid="59">
+            <description>source Type</description>
+            <attribute name="INF_TYPE" intValue="2045006"/>
+            <attribute name="INF_SUB_TYPE" intValue="2"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+      <property name="sourcefile" type="string" rid="60">
+            <description>File source</description>
+            <attribute name="INF_TYPE" intValue="2045007"/>
+            <attribute name="INF_SUB_TYPE" intValue="2"/>
+            <attribute name="ACCESS_APPVIEW" intValue="1"/>
+            <attribute name="ACCESS_CVS" intValue="1"/>
+            <attribute name="ACCESS_HTML" intValue="1"/>
+      </property>
+     </category> 
+     
+     
+
+ </metaModel>
